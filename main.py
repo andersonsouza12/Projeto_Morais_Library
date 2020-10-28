@@ -6,6 +6,17 @@ continuar = " "
 voltarMenu = " "
 lista = []
 
+
+def informacoesLivro(livro):
+    return f"    Livro: {livro['nome']} \n"
+    f"    Autor: {livro['autor']}\n"
+    f"    Tipo: {livro['fisicoOuEletronico']}\n"
+    f"    Ano da Edição: {livro['ano']}\n"
+    f"    Assunto: {livro['assunto']}\n"
+    f"    Quantidade: {livro['quantidade']}\n"
+    f"    Alugado:  {livro['alugado']}\n"
+    f"    Fim do Aluguel {livro['dataAluguel']}"
+
 while continuar != "sair":
     voltarMenu = " "
     print("""
@@ -104,15 +115,7 @@ while continuar != "sair":
             relatorio = open('relatorioDoAcervo.txt', 'w', encoding="utf8")
             relatorio.writelines('RELATÓRIO DO ACERVO DA MORAIS LIBRARY \n\n')
             for l in livros:
-                relatorio.writelines(f"Livro: {l['nome']} \n" +
-                                     f"    Autor: {l['autor']}\n" +
-                                     f"    Tipo: {l['fisicoOuEletronico']}\n" +
-                                     f"    Ano da Edição: {l['anoLancamento']}\n" +
-                                     f"    Assunto: {l['assunto']}\n" +
-                                     f"    Quantidade: {l['quantidade']}\n" +
-                                     f"    Alugado:  {l['alugado']}\n" +
-                                     f"    Fim do Aluguel {l['dataAluguel']}"
-                                     )
+                relatorio.writelines(informacoesLivro(l))
             relatorio.close()
             print('Relatório gerado com sucesso!!')
 
@@ -124,15 +127,7 @@ while continuar != "sair":
             relatorio.write(f'RELATÓRIO SOBRE A CATEGORIA {escolha4.upper()}\n\n')
             for l in livros:
                 if escolha4 == l['categoria']:
-                    relatorio.write(f"    Livro: {l['nome']} \n" +
-                                    f"    Autor: {l['autor']}\n" +
-                                    f"    Tipo: {l['fisicoOuEletronico']}\n" +
-                                    f"    Ano da Edição: {l['ano']}\n" +
-                                    f"    Assunto: {l['assunto']}\n" +
-                                    f"    Quantidade: {l['quantidade']}\n" +
-                                    f"    Alugado:  {l['alugado']}\n" +
-                                    f"    Fim do Aluguel {l['dataAluguel']}"
-                                    )
+                    relatorio.write(informacoesLivro(l))
             relatorio.close()
             print('Relatório gerado com sucesso!!')
 
@@ -143,25 +138,21 @@ while continuar != "sair":
             relatorio.write(f'RELATÓRIO SOBRE O ASSUNTO {escolha5.upper()}\n\n')
             for l in livros:
                 if escolha5 == l['assunto']:
-                    relatorio.write(f"Livro: {l['nome']} \n" +
-                                    f"    Autor: {l['autor']}\n" +
-                                    f"    Tipo: {l['fisicoOuEletronico']}\n" +
-                                    f"    Ano da Edição: {l['anoLancamento']}\n" +
-                                    f"    Assunto: {l['assunto']}\n" +
-                                    f"    Quantidade: {l['quantidade']}\n" +
-                                    f"    Alugado:  {l['alugado']}\n" +
-                                    f"    Fim do Aluguel {l['dataAluguel']}"
-                                    )
+                    relatorio.write(informacoesLivro(l))
+
             relatorio.close()
             print('Relatório gerado com sucesso!!')
 
     elif escolha == 9:
+
         biblioteca.alugarLivro(livros)
 
-    # Alteração
-    elif escolha == 10:
-        biblioteca.adicionarcategoriaETematica(livros)
-    # Fim da alteração
 
-    elif escolha == 11:  # lembrar de corrigir aqui, e por sair como 11, la encima no primeiro print tbm
-        continuar = 'sair'  # la vai estar como sair == 10
+    elif escolha == 10:
+
+        biblioteca.adicionarcategoriaETematica(livros)
+
+
+    elif escolha == 11:
+
+        continuar = 'sair'
